@@ -31,8 +31,7 @@ data CalcStmtAST valuedomain
 -- | Check that an expression is compatible with a given signature.
 -- Returns a list of undeclared functions and variables used in the expression.
 -- The check infers the type of each subexpression, and collates the problems in a list.
--- typeCheckExpr :: Signature -> TypeEnvironment -> ValueType valuedomain -> CalcExprAST valuedomain -> (TypeName, [FunName])
--- typeCheckExpr :: (a, [FunDeclaration]) -> [(VarName, TypeName)] -> ((valuedomain, UnitName) -> TypeName) -> CalcExprAST valuedomain -> (TypeName, [String])
+typeCheckExpr :: Signature -> TypeEnvironment -> ValueType valuedomain -> CalcExprAST valuedomain -> (TypeName, [FunName])
 typeCheckExpr sig@(types, fundecls) tenv valtyp (Lit val name) = (valtyp (val, name), [])
 typeCheckExpr sig@(types, fundecls) tenv valtyp fcall@(Fun fn exprs) = typeCheckExpr' fundecls fcall
   where
